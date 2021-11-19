@@ -8,6 +8,8 @@ Na aba lateral, você conseguirá navegar por todos os nossos materiais.
 Sinta-se à vontade em apontar erros, sugerir melhorias ou compartilhar com outras pessoas. Este conteúdo é e sempre será livre.
 
 :::{note}
+Blog: https://medium.com/datadummies
+
 Facebook: https://web.facebook.com/academiadosbots
 
 Instagram: https://www.instagram.com/academiadosbots/
