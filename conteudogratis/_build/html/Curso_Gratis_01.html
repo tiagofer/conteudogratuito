@@ -1,0 +1,995 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso Grátis - Acessando a API da Betfair &#8212; Conteudo Gratuito Academia dos Bots</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Apresentação" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Conteudo Gratuito Academia dos Bots</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Pesquise este livro ..." aria-label="Pesquise este livro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Apresentação
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Curso Grátis - Acessando a API da Betfair
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Alternar de navegação" aria-controls="site-navigation"
+                title="Alternar de navegação" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Baixe esta página"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Curso_Gratis_01.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Baixar arquivo fonte" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir em PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositório fonte"><i
+                    class="fab fa-github"></i>repositório</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FCurso_Gratis_01.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abra um problema"><i class="fas fa-lightbulb"></i>questão aberta</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo tela cheia"
+        title="Modo tela cheia"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Curso_Gratis_01.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lançamento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Conteúdo
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Curso Grátis - Acessando a API da Betfair
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-estrutura-da-api-da-betfair">
+   A estrutura da API da Betfair
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports-e-arquivos-de-configuracao">
+   Imports e arquivos de configuração
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#abrindo-uma-conexao">
+   Abrindo uma conexão
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#listando-eventos">
+   Listando Eventos
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#listando-mercados">
+   Listando Mercados
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#obtendo-odds">
+   Obtendo Odds
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exportando-arquivo-final">
+   Exportando arquivo final
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="curso-gratis-acessando-a-api-da-betfair">
+<h1>Curso Grátis - Acessando a API da Betfair<a class="headerlink" href="#curso-gratis-acessando-a-api-da-betfair" title="Permalink to this headline">¶</a></h1>
+<p>Bem vindo ao nosso curso grátis sobre como acessar a API da Betfair e começar a extrair os seus próprios dados para apoiar a sua tomada de decisão no trade esportivo e dar os primeiros passos na análise de dados com Python.</p>
+<p>Antes de iniciarmos, vamos nos apresentar. A Academia dos Bots tem por objetivo trazer cursos voltados para análise de dados de futebol, criação de bots para apoio na tomada de decisão nas apostas, extração de dados da internet por meio de crawlers, modelagem estatística voltada para o futebol e muito mais, tudo isto utilizando Python, R e SQL.</p>
+<p>Ao longo deste material, aprenderemos de maneira simples e intuitiva como é o funcionamento básico da API e como realizar a primeira extração das odds de algum jogo.</p>
+<p><em>Importante</em> - Este material é parte integrante da série de vídeos que encontra-se neste link <a class="reference external" href="https://www.youtube.com/channel/UCvQwP2UX2b6Ov_F7eagUleQ">https://www.youtube.com/channel/UCvQwP2UX2b6Ov_F7eagUleQ</a></p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="a-estrutura-da-api-da-betfair">
+<h1>A estrutura da API da Betfair<a class="headerlink" href="#a-estrutura-da-api-da-betfair" title="Permalink to this headline">¶</a></h1>
+<p>Antes de mais nada, você sabe o que é uma API? De maneira resumida, uma API permite que uma aplicação A tenha acesso a recursos da aplicação B, sem ter a necessidade de conhecer todo o processo de desenvolvimento e realização de integrações complexas. Em nosso caso, nós somos a aplicação A que irá buscar os dados da aplicação B (Betfair).</p>
+<p>Para termos uma noção do que queremos acessar, vamos olhar a origem dos dados e entender como ele está estruturado. Observando o site, logo de cara nos deparamos com uma infinidade de informações.</p>
+<p><img alt="teste alt" src="_images/betfair.png" /></p>
+<p>Aqui, vamos fazer o nosso primeiro filtro: queremos obter as cotações (odds) de algum mercado (gols, Match Odds, cantos, etc.) de um jogo (evento) pertencente a uma competição de algum esporte. Percebeu a relação? Para acessar os dados, assim que entender esta relação nosso trabalho ficará muito mais simples.</p>
+<p>Na Betfair, teremos uma sequência de etapas a serem realizadas e que estão diretamente relacionadas com a relação citada anteriormente. Abaixo, vamos entender este processo por meio de um diagrama:</p>
+<p><img alt="fluxo" src="_images/fluxo.png" /></p>
+<p>Legal este fluxo né!? Vamos colocar a mão na massa?!</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="imports-e-arquivos-de-configuracao">
+<h1>Imports e arquivos de configuração<a class="headerlink" href="#imports-e-arquivos-de-configuracao" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">betfairlightweight</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;seu_email_betfair&quot;</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="s2">&quot;sua_senha_betfair&quot;</span>
+<span class="n">app_key</span> <span class="o">=</span> <span class="s2">&quot;sua_appkey&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="abrindo-uma-conexao">
+<h1>Abrindo uma conexão<a class="headerlink" href="#abrindo-uma-conexao" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Abrindo a conexão com a lib betfairlightweight</span>
+<span class="n">trading</span> <span class="o">=</span> <span class="n">betfairlightweight</span><span class="o">.</span><span class="n">APIClient</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">pw</span><span class="p">,</span> <span class="n">app_key</span><span class="o">=</span><span class="n">app_key</span><span class="p">,</span> <span class="n">cert_files</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;./certs/tt_app_test.crt&#39;</span><span class="p">,</span><span class="s1">&#39;./certs/client-2048.key&#39;</span><span class="p">))</span>
+<span class="n">trading</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;LoginResource&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="listando-eventos">
+<h1>Listando Eventos<a class="headerlink" href="#listando-eventos" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definindo os filtros de Mercado</span>
+<span class="n">filtros_mercado</span> <span class="o">=</span> <span class="n">betfairlightweight</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">market_filter</span><span class="p">(</span>
+    <span class="n">event_type_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">],</span> <span class="c1"># ID para Futebol</span>
+    <span class="n">competition_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">321319</span><span class="p">],</span> <span class="c1">#Competições</span>
+    <span class="n">market_start_time</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;to&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%TZ&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1">#listando os eventos a partir dos filtros pré definidos acima</span>
+<span class="n">eventos_futebol</span> <span class="o">=</span> <span class="n">trading</span><span class="o">.</span><span class="n">betting</span><span class="o">.</span><span class="n">list_events</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="n">filtros_mercado</span>
+<span class="p">)</span>
+
+<span class="c1">#listando as competições de futebol disponíveis</span>
+<span class="n">competicoes_futebol</span> <span class="o">=</span> <span class="n">trading</span><span class="o">.</span><span class="n">betting</span><span class="o">.</span><span class="n">list_competitions</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="n">filtros_mercado</span>
+<span class="p">)</span>
+
+<span class="n">planilha_eventos_futebol</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;NomeEvento&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">obj_evento</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">obj_evento</span> <span class="ow">in</span> <span class="n">eventos_futebol</span><span class="p">],</span>
+    <span class="s1">&#39;IDEvento&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">obj_evento</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">obj_evento</span> <span class="ow">in</span> <span class="n">eventos_futebol</span><span class="p">],</span>
+    <span class="s1">&#39;LocalEvento&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">obj_evento</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">venue</span> <span class="k">for</span> <span class="n">obj_evento</span> <span class="ow">in</span> <span class="n">eventos_futebol</span><span class="p">],</span>
+    <span class="s1">&#39;CodPais&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">obj_evento</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">country_code</span> <span class="k">for</span> <span class="n">obj_evento</span> <span class="ow">in</span> <span class="n">eventos_futebol</span><span class="p">],</span>
+    <span class="s1">&#39;TimeZone&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">obj_evento</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">time_zone</span> <span class="k">for</span> <span class="n">obj_evento</span> <span class="ow">in</span> <span class="n">eventos_futebol</span><span class="p">],</span>
+    <span class="s1">&#39;DataAbertura&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">obj_evento</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">open_date</span> <span class="k">for</span> <span class="n">obj_evento</span> <span class="ow">in</span> <span class="n">eventos_futebol</span><span class="p">],</span>
+    <span class="s1">&#39;TotalMercados&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">obj_evento</span><span class="o">.</span><span class="n">market_count</span> <span class="k">for</span> <span class="n">obj_evento</span> <span class="ow">in</span> <span class="n">eventos_futebol</span><span class="p">],</span>
+    <span class="s1">&#39;DataLocal&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">obj_evento</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">open_date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> 
+                        <span class="k">for</span> <span class="n">obj_evento</span> <span class="ow">in</span> <span class="n">eventos_futebol</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">planilha_eventos_futebol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NomeEvento</th>
+      <th>IDEvento</th>
+      <th>LocalEvento</th>
+      <th>CodPais</th>
+      <th>TimeZone</th>
+      <th>DataAbertura</th>
+      <th>TotalMercados</th>
+      <th>DataLocal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Remo v Goias</td>
+      <td>31065570</td>
+      <td>None</td>
+      <td>BR</td>
+      <td>GMT</td>
+      <td>2021-11-15 23:00:00</td>
+      <td>29</td>
+      <td>2021-11-15 20:00:00-03:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brusque FC v CRB</td>
+      <td>31065555</td>
+      <td>None</td>
+      <td>BR</td>
+      <td>GMT</td>
+      <td>2021-11-15 19:00:00</td>
+      <td>29</td>
+      <td>2021-11-15 16:00:00-03:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Nautico PE v Sampaio Correa FC</td>
+      <td>31065571</td>
+      <td>None</td>
+      <td>BR</td>
+      <td>GMT</td>
+      <td>2021-11-15 21:00:00</td>
+      <td>29</td>
+      <td>2021-11-15 18:00:00-03:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Vila Nova v Vasco da Gama</td>
+      <td>31065574</td>
+      <td>None</td>
+      <td>BR</td>
+      <td>GMT</td>
+      <td>2021-11-15 21:00:00</td>
+      <td>29</td>
+      <td>2021-11-15 18:00:00-03:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Botafogo v Operario PR</td>
+      <td>31065572</td>
+      <td>None</td>
+      <td>BR</td>
+      <td>GMT</td>
+      <td>2021-11-15 19:00:00</td>
+      <td>29</td>
+      <td>2021-11-15 16:00:00-03:00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Londrina v Ponte Preta</td>
+      <td>31065573</td>
+      <td>None</td>
+      <td>BR</td>
+      <td>GMT</td>
+      <td>2021-11-15 19:00:00</td>
+      <td>29</td>
+      <td>2021-11-15 16:00:00-03:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="listando-mercados">
+<h1>Listando Mercados<a class="headerlink" href="#listando-mercados" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">id_evento</span> <span class="o">=</span> <span class="mi">31065573</span>
+
+<span class="n">filtro_catalogo_mercados</span> <span class="o">=</span> <span class="n">betfairlightweight</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">market_filter</span><span class="p">(</span><span class="n">event_ids</span><span class="o">=</span><span class="p">[</span><span class="n">id_evento</span><span class="p">])</span>
+
+<span class="n">catalogos_mercado</span> <span class="o">=</span> <span class="n">trading</span><span class="o">.</span><span class="n">betting</span><span class="o">.</span><span class="n">list_market_catalogue</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="n">filtro_catalogo_mercados</span><span class="p">,</span>
+    <span class="n">max_results</span><span class="o">=</span><span class="s1">&#39;100&#39;</span><span class="p">,</span>
+    <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;FIRST_TO_START&#39;</span><span class="p">,</span>
+    <span class="n">market_projection</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;RUNNER_METADATA&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Create a DataFrame for each market catalogue</span>
+<span class="n">planilha_mercados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;NomeMercado&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">market_name</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">],</span>
+    <span class="s1">&#39;IDMercado&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">market_id</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">],</span>
+    <span class="s1">&#39;TotalCorrespondido&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">total_matched</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">],</span>
+    <span class="s1">&#39;Home&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">runners</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">runner_name</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">],</span>
+    <span class="s1">&#39;Home_id&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">runners</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">selection_id</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">],</span>
+    <span class="s1">&#39;Away&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">runners</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">runner_name</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">],</span>
+    <span class="s1">&#39;Away_id&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">runners</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">selection_id</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">],</span>
+    <span class="s1">&#39;Draw&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">runners</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">runner_name</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">runners</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">],</span>
+    <span class="s1">&#39;Draw_id&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">runners</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">selection_id</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">market_cat_object</span><span class="o">.</span><span class="n">runners</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">market_cat_object</span> <span class="ow">in</span> <span class="n">catalogos_mercado</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">planilha_mercados</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NomeMercado</th>
+      <th>IDMercado</th>
+      <th>TotalCorrespondido</th>
+      <th>Home</th>
+      <th>Home_id</th>
+      <th>Away</th>
+      <th>Away_id</th>
+      <th>Draw</th>
+      <th>Draw_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Match Odds</td>
+      <td>1.190674822</td>
+      <td>22022.02562</td>
+      <td>Londrina</td>
+      <td>4525642</td>
+      <td>Ponte Preta</td>
+      <td>204603</td>
+      <td>The Draw</td>
+      <td>58805</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Total Goals Odd/Even</td>
+      <td>1.190674823</td>
+      <td>73.33000</td>
+      <td>Odd</td>
+      <td>955466</td>
+      <td>Even</td>
+      <td>955467</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Londrina +1</td>
+      <td>1.190674824</td>
+      <td>0.00000</td>
+      <td>Londrina +1</td>
+      <td>7074785</td>
+      <td>Ponte Preta -1</td>
+      <td>6747717</td>
+      <td>Draw</td>
+      <td>151478</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>First Half Goals 0.5</td>
+      <td>1.190674825</td>
+      <td>1431.10828</td>
+      <td>Under 0.5 Goals</td>
+      <td>5851482</td>
+      <td>Over 0.5 Goals</td>
+      <td>5851483</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Over/Under 7.5 Goals</td>
+      <td>1.190674818</td>
+      <td>0.00000</td>
+      <td>Under 7.5 Goals</td>
+      <td>1485572</td>
+      <td>Over 7.5 Goals</td>
+      <td>1485573</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Over/Under 8.5 Goals</td>
+      <td>1.190674819</td>
+      <td>0.00000</td>
+      <td>Under 8.5 Goals</td>
+      <td>2407528</td>
+      <td>Over 8.5 Goals</td>
+      <td>2407529</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>First Half Goals 2.5</td>
+      <td>1.190674820</td>
+      <td>1172.18005</td>
+      <td>Under 2.5 Goals</td>
+      <td>47972</td>
+      <td>Over 2.5 Goals</td>
+      <td>47973</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Both teams to Score?</td>
+      <td>1.190674821</td>
+      <td>3296.69681</td>
+      <td>Yes</td>
+      <td>30246</td>
+      <td>No</td>
+      <td>110503</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Asian Handicap</td>
+      <td>1.190674779</td>
+      <td>6717.90796</td>
+      <td>Londrina</td>
+      <td>4525642</td>
+      <td>Ponte Preta</td>
+      <td>204603</td>
+      <td>Londrina</td>
+      <td>4525642</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Double Chance</td>
+      <td>1.190674813</td>
+      <td>88.65597</td>
+      <td>Home or Draw</td>
+      <td>6384646</td>
+      <td>Draw or Away</td>
+      <td>6384647</td>
+      <td>Home or Away</td>
+      <td>6384648</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Draw no Bet</td>
+      <td>1.190674814</td>
+      <td>336.43804</td>
+      <td>Londrina</td>
+      <td>4525642</td>
+      <td>Ponte Preta</td>
+      <td>204603</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Ponte Preta +1</td>
+      <td>1.190674815</td>
+      <td>0.00000</td>
+      <td>Ponte Preta +1</td>
+      <td>6747718</td>
+      <td>Londrina -1</td>
+      <td>7074788</td>
+      <td>Draw</td>
+      <td>151478</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Londrina Win to Nil</td>
+      <td>1.190674816</td>
+      <td>0.00000</td>
+      <td>Yes</td>
+      <td>30246</td>
+      <td>No</td>
+      <td>110503</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ponte Preta Win to Nil</td>
+      <td>1.190674817</td>
+      <td>0.00000</td>
+      <td>Yes</td>
+      <td>30246</td>
+      <td>No</td>
+      <td>110503</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Goal Lines</td>
+      <td>1.190674744</td>
+      <td>1464.62009</td>
+      <td>Under</td>
+      <td>7044483</td>
+      <td>Over</td>
+      <td>7044482</td>
+      <td>Under</td>
+      <td>7044483</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Over/Under 3.5 Goals</td>
+      <td>1.190674778</td>
+      <td>4918.60975</td>
+      <td>Under 3.5 Goals</td>
+      <td>1222344</td>
+      <td>Over 3.5 Goals</td>
+      <td>1222345</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Half Time/Full Time</td>
+      <td>1.190674835</td>
+      <td>1364.08466</td>
+      <td>Londrina/Londrina</td>
+      <td>7074784</td>
+      <td>Londrina/Draw</td>
+      <td>7074787</td>
+      <td>Londrina/Ponte Preta</td>
+      <td>18282792</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Over/Under 1.5 Goals</td>
+      <td>1.190674836</td>
+      <td>3010.34316</td>
+      <td>Under 1.5 Goals</td>
+      <td>1221385</td>
+      <td>Over 1.5 Goals</td>
+      <td>1221386</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Londrina Clean Sheet</td>
+      <td>1.190674837</td>
+      <td>0.00000</td>
+      <td>Yes</td>
+      <td>30246</td>
+      <td>No</td>
+      <td>110503</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Ponte Preta Clean Sheet</td>
+      <td>1.190674838</td>
+      <td>0.00000</td>
+      <td>Yes</td>
+      <td>30246</td>
+      <td>No</td>
+      <td>110503</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Over/Under 5.5 Goals</td>
+      <td>1.190674830</td>
+      <td>109.62835</td>
+      <td>Under 5.5 Goals</td>
+      <td>1485567</td>
+      <td>Over 5.5 Goals</td>
+      <td>1485568</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Correct Score</td>
+      <td>1.190674831</td>
+      <td>3653.74058</td>
+      <td>0 - 0</td>
+      <td>1</td>
+      <td>0 - 1</td>
+      <td>4</td>
+      <td>0 - 2</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Over/Under 2.5 Goals</td>
+      <td>1.190674832</td>
+      <td>3823.93951</td>
+      <td>Under 2.5 Goals</td>
+      <td>47972</td>
+      <td>Over 2.5 Goals</td>
+      <td>47973</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Over/Under 4.5 Goals</td>
+      <td>1.190674833</td>
+      <td>10483.40346</td>
+      <td>Under 4.5 Goals</td>
+      <td>1222347</td>
+      <td>Over 4.5 Goals</td>
+      <td>1222346</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Half Time Score</td>
+      <td>1.190674834</td>
+      <td>358.14372</td>
+      <td>0 - 0</td>
+      <td>1</td>
+      <td>1 - 1</td>
+      <td>3</td>
+      <td>2 - 2</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Over/Under 0.5 Goals</td>
+      <td>1.190674826</td>
+      <td>1942.51170</td>
+      <td>Under 0.5 Goals</td>
+      <td>5851482</td>
+      <td>Over 0.5 Goals</td>
+      <td>5851483</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>First Half Goals 1.5</td>
+      <td>1.190674827</td>
+      <td>732.56670</td>
+      <td>Under 1.5 Goals</td>
+      <td>1221385</td>
+      <td>Over 1.5 Goals</td>
+      <td>1221386</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Over/Under 6.5 Goals</td>
+      <td>1.190674828</td>
+      <td>1.02662</td>
+      <td>Under 6.5 Goals</td>
+      <td>2542448</td>
+      <td>Over 6.5 Goals</td>
+      <td>2542449</td>
+      <td></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Half Time</td>
+      <td>1.190674829</td>
+      <td>880.54664</td>
+      <td>Londrina</td>
+      <td>4525642</td>
+      <td>Ponte Preta</td>
+      <td>204603</td>
+      <td>The Draw</td>
+      <td>58805</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="obtendo-odds">
+<h1>Obtendo Odds<a class="headerlink" href="#obtendo-odds" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">):</span>
+    <span class="n">order_filter</span> <span class="o">=</span> <span class="n">betfairlightweight</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">ex_best_offers_overrides</span><span class="p">(</span>
+        <span class="n">best_prices_depth</span><span class="o">=</span><span class="mi">3</span>
+    <span class="p">)</span>
+
+    <span class="n">price_filter</span> <span class="o">=</span> <span class="n">betfairlightweight</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">price_projection</span><span class="p">(</span>
+        <span class="n">price_data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;EX_BEST_OFFERS&#39;</span><span class="p">],</span>
+        <span class="n">ex_best_offers_overrides</span><span class="o">=</span><span class="n">order_filter</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Obtendo odds para o mercado</span>
+    <span class="n">market_books</span> <span class="o">=</span> <span class="n">trading</span><span class="o">.</span><span class="n">betting</span><span class="o">.</span><span class="n">list_market_book</span><span class="p">(</span>
+        <span class="n">market_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1.190674822&#39;</span><span class="p">],</span>
+        <span class="n">price_projection</span><span class="o">=</span><span class="n">price_filter</span>
+    <span class="p">)</span>
+
+    <span class="c1">#Lista de runners</span>
+    <span class="n">runners</span> <span class="o">=</span> <span class="n">market_books</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">runners</span>
+
+    <span class="n">back</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">back</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">runner_book</span><span class="o">.</span><span class="n">ex</span><span class="o">.</span><span class="n">available_to_back</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">price</span>
+                                    <span class="k">if</span> <span class="n">runner_book</span><span class="o">.</span><span class="n">ex</span><span class="o">.</span><span class="n">available_to_back</span>
+                                    <span class="k">else</span> <span class="mf">1.01</span>
+                                    <span class="k">for</span> <span class="n">runner_book</span>
+                                    <span class="ow">in</span> <span class="n">runners</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">back</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mf">1.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">])</span>
+
+    <span class="n">lay</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">lay</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">runner_book</span><span class="o">.</span><span class="n">ex</span><span class="o">.</span><span class="n">available_to_lay</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">price</span>
+                                    <span class="k">if</span> <span class="n">runner_book</span><span class="o">.</span><span class="n">ex</span><span class="o">.</span><span class="n">available_to_lay</span>
+                                    <span class="k">else</span> <span class="mf">1.01</span>
+                                    <span class="k">for</span> <span class="n">runner_book</span>
+                                    <span class="ow">in</span> <span class="n">runners</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">lay</span><span class="o">.</span><span class="n">append</span><span class="p">([[</span><span class="mf">1.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">]])</span>
+
+
+    <span class="n">df_back</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">back</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Casa&#39;</span><span class="p">,</span><span class="s1">&#39;Visitante&#39;</span><span class="p">,</span><span class="s1">&#39;Empate&#39;</span><span class="p">])</span>
+    <span class="n">df_back</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">df_back</span><span class="p">[</span><span class="s1">&#39;Jogo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">planilha_eventos_futebol</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;IDEvento==&quot;31065573&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">NomeEvento</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">df_final</span> <span class="o">=</span> <span class="n">df_final</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_back</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="exportando-arquivo-final">
+<h1>Exportando arquivo final<a class="headerlink" href="#exportando-arquivo-final" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;2021_11_15_serieb_londrina_vs_ponte.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Apresentação</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          De Academia dos Bots<br/>
+        
+            &copy; direito autoral 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
