@@ -33,3 +33,7 @@ execute:
 html:
   use_issues_button: true
   use_repository_button: true
+  google_analytics_id: UA-189287071-1
+
+google_analytics:
+  mytrackingcode: UA-189287071-1
