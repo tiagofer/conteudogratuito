@@ -1,0 +1,978 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Como analisar dados de Futebol &#8212; Conteudo Gratuito Academia dos Bots</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Curso Grátis - Acessando a API da Betfair" href="Curso_Gratis_01.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-189287071-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Conteudo Gratuito Academia dos Bots</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Pesquise este livro ..." aria-label="Pesquise este livro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Apresentação
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Curso_Gratis_01.html">
+   Curso Grátis - Acessando a API da Betfair
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Como analisar dados de Futebol
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Alternar de navegação" aria-controls="site-navigation"
+                title="Alternar de navegação" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Baixe esta página"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Dados_Futebol.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Baixar arquivo fonte" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir em PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositório fonte"><i
+                    class="fab fa-github"></i>repositório</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDados_Futebol.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abra um problema"><i class="fas fa-lightbulb"></i>questão aberta</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo tela cheia"
+        title="Modo tela cheia"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Dados_Futebol.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lançamento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Conteúdo
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Como analisar dados de Futebol
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tabela-de-jogos">
+   Tabela de Jogos
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tabela-estatisticas">
+   Tabela Estatísticas
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tabela-eventos">
+   Tabela Eventos
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="como-analisar-dados-de-futebol">
+<h1>Como analisar dados de Futebol<a class="headerlink" href="#como-analisar-dados-de-futebol" title="Permalink to this headline">¶</a></h1>
+<p>Neste vídeo eu trago uma introdução sobre como, no geral, você irá encontrar os dados de futebol. Os tipos de tabelas e como unir todas elas.</p>
+<p>Espero que ajude a sua jornada de conhecimento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">betfairlightweight</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_jogos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../dados/jogos_paulista.csv&#39;</span><span class="p">)</span>
+<span class="n">df_stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../dados/stats_paulista.csv&#39;</span><span class="p">)</span>
+<span class="n">df_eventos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../dados/events_paulista.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="tabela-de-jogos">
+<h1>Tabela de Jogos<a class="headerlink" href="#tabela-de-jogos" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>1 jogo por linha</p></li>
+<li><p>Dados como o estádio, juiz, resultado, id do jogo, nome dos times, etc.</p></li>
+<li><p>Base para a união dos dados para as demais tabelas</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_jogos</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;idEvent&#39;, &#39;dateEvent&#39;, &#39;eventCity&#39;, &#39;eventStatus&#39;, &#39;eventElapsed&#39;,
+       &#39;eventLeague&#39;, &#39;eventRound&#39;, &#39;idHomeTeam&#39;, &#39;strHomeTeam&#39;,
+       &#39;logoHomeTeam&#39;, &#39;idAwayTeam&#39;, &#39;strAwayTeam&#39;, &#39;logoAwayTeam&#39;,
+       &#39;intHomeScore&#39;, &#39;intAwayScore&#39;, &#39;intHomeHt&#39;, &#39;intAwayHt&#39;, &#39;date&#39;,
+       &#39;hour&#39;, &#39;idWinner&#39;, &#39;winner&#39;, &#39;winOrDraw&#39;, &#39;underOver&#39;, &#39;predGoalsHome&#39;,
+       &#39;predGoalsAway&#39;, &#39;advice&#39;, &#39;formHome&#39;, &#39;formAway&#39;, &#39;attHome&#39;, &#39;attAway&#39;,
+       &#39;defHome&#39;, &#39;defAway&#39;, &#39;poissonHome&#39;, &#39;poissonAway&#39;, &#39;h2hHome&#39;,
+       &#39;h2hAway&#39;, &#39;goalsHome&#39;, &#39;goalsAway&#39;, &#39;totalHome&#39;, &#39;totalAway&#39;,
+       &#39;homeOdd&#39;, &#39;drawOdd&#39;, &#39;awayOdd&#39;, &#39;over05&#39;, &#39;over05Ht&#39;, &#39;under15&#39;,
+       &#39;under15Ht&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_jogos</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>idEvent</th>
+      <th>dateEvent</th>
+      <th>eventCity</th>
+      <th>eventStatus</th>
+      <th>eventElapsed</th>
+      <th>eventLeague</th>
+      <th>eventRound</th>
+      <th>idHomeTeam</th>
+      <th>strHomeTeam</th>
+      <th>logoHomeTeam</th>
+      <th>idAwayTeam</th>
+      <th>strAwayTeam</th>
+      <th>logoAwayTeam</th>
+      <th>intHomeScore</th>
+      <th>intAwayScore</th>
+      <th>intHomeHt</th>
+      <th>intAwayHt</th>
+      <th>date</th>
+      <th>hour</th>
+      <th>idWinner</th>
+      <th>winner</th>
+      <th>winOrDraw</th>
+      <th>underOver</th>
+      <th>predGoalsHome</th>
+      <th>predGoalsAway</th>
+      <th>advice</th>
+      <th>formHome</th>
+      <th>formAway</th>
+      <th>attHome</th>
+      <th>attAway</th>
+      <th>defHome</th>
+      <th>defAway</th>
+      <th>poissonHome</th>
+      <th>poissonAway</th>
+      <th>h2hHome</th>
+      <th>h2hAway</th>
+      <th>goalsHome</th>
+      <th>goalsAway</th>
+      <th>totalHome</th>
+      <th>totalAway</th>
+      <th>homeOdd</th>
+      <th>drawOdd</th>
+      <th>awayOdd</th>
+      <th>over05</th>
+      <th>over05Ht</th>
+      <th>under15</th>
+      <th>under15Ht</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>317888</td>
+      <td>2020-02-02 19:00:00-03:00</td>
+      <td>Campinas, São Paulo</td>
+      <td>Match Finished</td>
+      <td>90</td>
+      <td>Paulista - A1</td>
+      <td>Regular Season - 4</td>
+      <td>138</td>
+      <td>Guarani Campinas</td>
+      <td>https://media.api-sports.io/football/teams/138...</td>
+      <td>10003</td>
+      <td>Santo André</td>
+      <td>https://media.api-sports.io/football/teams/100...</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2020-02-02 00:00:00</td>
+      <td>19:00:00</td>
+      <td>10003.0</td>
+      <td>Santo André</td>
+      <td>False</td>
+      <td>1.5</td>
+      <td>-2.5</td>
+      <td>-4.5</td>
+      <td>Combo Winner : Santo André and +1.5 goals</td>
+      <td>31</td>
+      <td>69</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>24</td>
+      <td>76</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>38.8</td>
+      <td>61.3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>317890</td>
+      <td>2020-02-03 20:00:00-03:00</td>
+      <td>Ribeirão Preto, São Paulo</td>
+      <td>Match Finished</td>
+      <td>90</td>
+      <td>Paulista - A1</td>
+      <td>Regular Season - 4</td>
+      <td>2618</td>
+      <td>Botafogo SP</td>
+      <td>https://media.api-sports.io/football/teams/261...</td>
+      <td>7848</td>
+      <td>Mirassol</td>
+      <td>https://media.api-sports.io/football/teams/784...</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2020-02-03 00:00:00</td>
+      <td>20:00:00</td>
+      <td>7848.0</td>
+      <td>Mirassol</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>-1.5</td>
+      <td>-1.5</td>
+      <td>Double chance : draw or Mirassol</td>
+      <td>25</td>
+      <td>75</td>
+      <td>50</td>
+      <td>50</td>
+      <td>30</td>
+      <td>70</td>
+      <td>0</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>35.0</td>
+      <td>65.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>317891</td>
+      <td>2020-02-03 20:00:00-03:00</td>
+      <td>São Paulo, São Paulo</td>
+      <td>Match Finished</td>
+      <td>90</td>
+      <td>Paulista - A1</td>
+      <td>Regular Season - 4</td>
+      <td>126</td>
+      <td>Sao Paulo</td>
+      <td>https://media.api-sports.io/football/teams/126...</td>
+      <td>7834</td>
+      <td>Novorizontino</td>
+      <td>https://media.api-sports.io/football/teams/783...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2020-02-03 00:00:00</td>
+      <td>20:00:00</td>
+      <td>7834.0</td>
+      <td>Novorizontino</td>
+      <td>True</td>
+      <td>-3.5</td>
+      <td>-2.5</td>
+      <td>-2.5</td>
+      <td>Combo Double chance : draw or Novorizontino an...</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>0</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>50.0</td>
+      <td>50.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>317892</td>
+      <td>2020-02-07 19:15:00-03:00</td>
+      <td>Barueri, São Paulo</td>
+      <td>Match Finished</td>
+      <td>90</td>
+      <td>Paulista - A1</td>
+      <td>Regular Season - 5</td>
+      <td>143</td>
+      <td>Oeste</td>
+      <td>https://media.api-sports.io/football/teams/143...</td>
+      <td>138</td>
+      <td>Guarani Campinas</td>
+      <td>https://media.api-sports.io/football/teams/138...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2020-02-07 00:00:00</td>
+      <td>19:15:00</td>
+      <td>138.0</td>
+      <td>Guarani Campinas</td>
+      <td>False</td>
+      <td>1.5</td>
+      <td>-1.5</td>
+      <td>-4.5</td>
+      <td>Combo Winner : Guarani Campinas and +1.5 goals</td>
+      <td>30</td>
+      <td>70</td>
+      <td>20</td>
+      <td>80</td>
+      <td>27</td>
+      <td>73</td>
+      <td>8</td>
+      <td>92</td>
+      <td>71</td>
+      <td>29</td>
+      <td>69</td>
+      <td>31</td>
+      <td>37.5</td>
+      <td>62.5</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>317907</td>
+      <td>2020-02-21 16:00:00-03:00</td>
+      <td>Ribeirão Preto, São Paulo</td>
+      <td>Match Finished</td>
+      <td>90</td>
+      <td>Paulista - A1</td>
+      <td>Regular Season - 7</td>
+      <td>2618</td>
+      <td>Botafogo SP</td>
+      <td>https://media.api-sports.io/football/teams/261...</td>
+      <td>1201</td>
+      <td>Inter De Limeira</td>
+      <td>https://media.api-sports.io/football/teams/120...</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2020-02-21 00:00:00</td>
+      <td>16:00:00</td>
+      <td>1201.0</td>
+      <td>Inter De Limeira</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>-1.5</td>
+      <td>-2.5</td>
+      <td>Double chance : draw or Inter De Limeira</td>
+      <td>18</td>
+      <td>82</td>
+      <td>43</td>
+      <td>57</td>
+      <td>25</td>
+      <td>75</td>
+      <td>10</td>
+      <td>90</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>24.0</td>
+      <td>76.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="tabela-estatisticas">
+<h1>Tabela Estatísticas<a class="headerlink" href="#tabela-estatisticas" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Pode variar, neste caso são 2 linhas por jogo (1 para o time da casa e 1 para o visitante)</p></li>
+<li><p>Trazem os dados como posse de bola, chutes a gol, escanteios, cartões, etc.</p></li>
+<li><p>Com os tratamentos, transformando 1 linha por jogo, geralmente é o input para análises e modelos estatísticos</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_stats</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>idEvent</th>
+      <th>idTeam</th>
+      <th>strTeam</th>
+      <th>isHome</th>
+      <th>shots_on_goal</th>
+      <th>shots_off_goal</th>
+      <th>total_shots</th>
+      <th>blocked_shots</th>
+      <th>shots_insidebox</th>
+      <th>shots_outsidebox</th>
+      <th>fouls</th>
+      <th>corner_kicks</th>
+      <th>offsides</th>
+      <th>ball_possession</th>
+      <th>yellow_cards</th>
+      <th>red_cards</th>
+      <th>goalkeeper_saves</th>
+      <th>total_passes</th>
+      <th>passes_accurate</th>
+      <th>passes_%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>317952</td>
+      <td>10018</td>
+      <td>Água Santa</td>
+      <td>True</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>11.0</td>
+      <td>4.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>15.0</td>
+      <td>7.0</td>
+      <td>1.0</td>
+      <td>42%</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>312.0</td>
+      <td>242.0</td>
+      <td>78%</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>317952</td>
+      <td>7826</td>
+      <td>Ferroviária</td>
+      <td>False</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>17.0</td>
+      <td>8.0</td>
+      <td>8.0</td>
+      <td>9.0</td>
+      <td>13.0</td>
+      <td>8.0</td>
+      <td>NaN</td>
+      <td>58%</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>418.0</td>
+      <td>334.0</td>
+      <td>80%</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>317953</td>
+      <td>2618</td>
+      <td>Botafogo SP</td>
+      <td>True</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>12.0</td>
+      <td>4.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>18.0</td>
+      <td>7.0</td>
+      <td>1.0</td>
+      <td>60%</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>478.0</td>
+      <td>394.0</td>
+      <td>82%</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>317953</td>
+      <td>10018</td>
+      <td>Água Santa</td>
+      <td>False</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>13.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>5.0</td>
+      <td>10.0</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>40%</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>307.0</td>
+      <td>239.0</td>
+      <td>78%</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>317954</td>
+      <td>10018</td>
+      <td>Água Santa</td>
+      <td>True</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>20.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>35%</td>
+      <td>6.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>305.0</td>
+      <td>240.0</td>
+      <td>79%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="tabela-eventos">
+<h1>Tabela Eventos<a class="headerlink" href="#tabela-eventos" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>1 linha por tipo de evento/time/jogador/tempo</p></li>
+<li><p>Geralmente traz os principais eventos do jogos: Substituições, cartões, gols</p></li>
+<li><p>Interessante para montar uma linha do tempo do jogo e entender o efeito destes eventos no resultado. Será que um cartão vermelho acima dos 30 minutos garante que o time com 1 a mais será vencedor? Fica a questão para análises…hehe</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_eventos</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>idEvent</th>
+      <th>timeElapsed</th>
+      <th>idTeam</th>
+      <th>strTeam</th>
+      <th>idPlayer</th>
+      <th>strPlayer</th>
+      <th>tipo</th>
+      <th>detail</th>
+      <th>comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>317952</td>
+      <td>32</td>
+      <td>7826</td>
+      <td>Ferroviária</td>
+      <td>15278</td>
+      <td>Carlão</td>
+      <td>Card</td>
+      <td>Yellow Card</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>317952</td>
+      <td>40</td>
+      <td>7826</td>
+      <td>Ferroviária</td>
+      <td>9457</td>
+      <td>Rayan</td>
+      <td>subst</td>
+      <td>Substitution 1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>317952</td>
+      <td>55</td>
+      <td>10018</td>
+      <td>Água Santa</td>
+      <td>55298</td>
+      <td>Uederson</td>
+      <td>subst</td>
+      <td>Substitution 1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>317952</td>
+      <td>59</td>
+      <td>7826</td>
+      <td>Ferroviária</td>
+      <td>80600</td>
+      <td>Tony</td>
+      <td>Card</td>
+      <td>Yellow Card</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>317952</td>
+      <td>65</td>
+      <td>10018</td>
+      <td>Água Santa</td>
+      <td>9852</td>
+      <td>Felipe Azevedo</td>
+      <td>subst</td>
+      <td>Substitution 2</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Curso_Gratis_01.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Curso Grátis - Acessando a API da Betfair</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          De Academia dos Bots<br/>
+        
+            &copy; direito autoral 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
